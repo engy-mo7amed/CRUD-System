@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>CRUD System</title>
+    <link rel="icon" href="" />
+    <!-- google fonts  -->
+
+    <!-- css sheets  -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section>
+      <div class="container bg-danger my-3 p-4 rounded-4">
+        <header>
+          <h1 class="text-center text-uppercase my-3">crud System</h1>
+        </header>
+        <!-- name input  -->
+        <div class="form-floating mb-3">
+          <input
+            class="form-control"
+            type="text"
+            id="ProductName"
+            placeholder=""
+          />
+          <label for="ProductName">Product Name</label>
+        </div>
+
+        <!-- price input  -->
+        <div class="form-floating mb-3">
+          <input
+            class="form-control"
+            type="number"
+            id="ProductPrice"
+            placeholder=""
+          />
+          <label for="ProductPrice">Product Price</label>
+        </div>
+
+        <!-- category input  -->
+        <div class="form-floating mb-3">
+          <input
+            list="listing"
+            class="form-control"
+            type="text"
+            id="ProductCategory"
+            placeholder=""
+          />
+          <label for="ProductCategory">Product Category</label>
+        </div>
+
+        <datalist id="listing">
+          <option>TV</option>
+          <option>LAPTOP</option>
+          <option>MOBILE</option>
+          <option>PHONE</option>
+        </datalist>
+
+        <!-- decription input  -->
+        <div class="form-floating mb-3">
+          <textarea
+            style="height: 100px"
+            class="form-control"
+            id="ProductDesciption"
+            placeholder=""
+          ></textarea>
+          <label for="ProductDesciption">Product Desciption</label>
+        </div>
+
+        <!-- image input  -->
+        <div class="form-floating mb-3">
+          <input
+            class="form-control"
+            type="file"
+            id="Productimage"
+            placeholder=""
+          />
+          <label for="Productimage">Product Image</label>
+        </div>
+
+        <!-- buttons  -->
+        <div class="text-center">
+          <button id="addBtn" onclick="addProduct()" class="btn btn-dark">
+            Add Product
+          </button>
+          <button
+            id="updateBtn"
+            onclick="updateProduct()"
+            class="btn btn-warning d-none"
+          >
+            Update Product
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="container my-5">
+      <input
+        oninput="displayProduct()"
+        id="search"
+        class="form-control border-danger"
+        type="search"
+        placeholder="Search By Name"
+      />
+    </section>
+
+    <section>
+      <div class="container my-4">
+        <div id="rowData" class="row"></div>
+      </div>
+    </section>
+    <!-- js sheets  -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
