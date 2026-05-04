@@ -23,34 +23,44 @@
         <!-- name input  -->
         <div class="form-floating mb-3">
           <input
+            oninput="validation(this)"
             class="form-control"
             type="text"
             id="ProductName"
             placeholder=""
           />
+          <p id="alertMsg" class="alert alert-danger d-none">
+            it madt start with capital letter and conssit of 3 to 10 charcterrs
+          </p>
           <label for="ProductName">Product Name</label>
         </div>
 
         <!-- price input  -->
         <div class="form-floating mb-3">
           <input
+            oninput="validation(this)"
             class="form-control"
             type="number"
             id="ProductPrice"
             placeholder=""
           />
+          <p id="alertMsg" class="alert alert-danger d-none">invalid price</p>
           <label for="ProductPrice">Product Price</label>
         </div>
 
         <!-- category input  -->
         <div class="form-floating mb-3">
           <input
+            oninput="validation(this)"
             list="listing"
             class="form-control"
             type="text"
             id="ProductCategory"
             placeholder=""
           />
+          <p id="alertMsg" class="alert alert-danger d-none">
+            invalid category
+          </p>
           <label for="ProductCategory">Product Category</label>
         </div>
 
@@ -64,11 +74,15 @@
         <!-- decription input  -->
         <div class="form-floating mb-3">
           <textarea
+            oninput="validation(this)"
             style="height: 100px"
             class="form-control"
             id="ProductDesciption"
             placeholder=""
           ></textarea>
+          <p id="alertMsg" class="alert alert-danger d-none">
+            invalid decribtion
+          </p>
           <label for="ProductDesciption">Product Desciption</label>
         </div>
 
@@ -115,6 +129,7 @@
       </div>
     </section>
     <!-- js sheets  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/all.min.js"></script>
     <script src="js/index.js"></script>

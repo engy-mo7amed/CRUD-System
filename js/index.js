@@ -15,20 +15,40 @@ if (localStorage.getItem("productContainer") !== null) {
 }
 
 function addProduct() {
-  var product = {
-    name: ProductNameInput.value.trim(),
-    price: ProductPriceInput.value,
-    category: ProductcategoryInput.value.trim(),
-    description: ProductDescriptionInput.value.trim(),
-    image: ProductImageInput.files[0]
-      ? `imgs/${ProductImageInput.files[0]?.name}`
-      : "imgs/img.jpg",
-  };
+  if (
+    validation(ProductNameInput) &&
+    validation(ProductPriceInput) &&
+    validation(ProductcategoryInput) &&
+    validation(ProductDescriptionInput)
+  ) {
+    var product = {
+      name: ProductNameInput.value.trim(),
+      price: ProductPriceInput.value,
+      category: ProductcategoryInput.value.trim(),
+      description: ProductDescriptionInput.value.trim(),
+      image: ProductImageInput.files[0]
+        ? `imgs/${ProductImageInput.files[0]?.name}`
+        : "imgs/img.jpg",
+    };
 
-  productList.push(product);
-  localStorage.setItem("productContainer", JSON.stringify(productList));
-  clearForm();
-  displayProduct();
+    productList.push(product);
+    localStorage.setItem("productContainer", JSON.stringify(productList));
+    clearForm();
+    displayProduct();
+    Swal.fire({
+      title: "success",
+      text: "product added succssfully👍",
+      icon: "success",
+      confirmButtonText: "ok",
+    });
+  } else {
+    Swal.fire({
+      title: "Error!",
+      text: "poduct failed to added😒",
+      icon: "error",
+      confirmButtonText: "ok",
+    });
+  }
 }
 
 function clearForm() {
@@ -37,6 +57,10 @@ function clearForm() {
   ProductcategoryInput.value = null;
   ProductDescriptionInput.value = null;
   ProductImageInput.value = null;
+  ProductNameInput.classList.remove("is-valid", "is-invalid");
+  ProductPriceInput.classList.remove("is-valid", "is-invalid");
+  ProductcategoryInput.classList.remove("is-valid", "is-invalid");
+  ProductDescriptionInput.classList.remove("is-valid", "is-invalid");
 }
 
 function displayProduct() {
@@ -100,4 +124,26 @@ function updateProduct() {
   clearForm();
   addbtn.classList.remove("d-none");
   updatebtn.classList.add("d-none");
+}
+
+function validation(element) {
+  var text = element.value;
+  var regex = {
+    ProductName: /^[A-Z][a-z]{2,10}$/,
+    ProductPrice: /^\d{1,10}(\.\d{1,2})?$/,
+    ProductCategory: /^(TV|LAPTOP|MOBILE|PHONE)$/,
+    ProductDesciption: /^[\w\w\s]{3,150}$/,
+  };
+
+  if (regex[element.id].test(text)) {
+    element.classList.add("is-valid");
+    element.classList.remove("is-invalid");
+    element.nextElementSibling.classList.add("d-none");
+    return true;
+  } else {
+    element.classList.add("is-invalid");
+    element.classList.remove("is-valid");
+    element.nextElementSibling.classList.remove("d-none");
+    return false;
+  }
 }
